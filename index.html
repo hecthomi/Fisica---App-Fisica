@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física · Plataforma educativa</title>
+
+  <!-- Fuentes locales de la intranet (funciona sin internet) -->
+  <link rel="stylesheet" href="../../../../font/fonts.css">
+  <link rel="stylesheet" href="feria-styles.css?v=23">
+
+  <!-- Tema guardado: se aplica antes de pintar para que no parpadee -->
+  <script>
+    try {
+      var t = localStorage.getItem('fisica-tema');
+      if (t === 'claro') document.documentElement.setAttribute('data-tema', 'claro');
+    } catch (e) { }
+  </script>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================================================
+     PRIMERA PANTALLA
+     ========================================================= -->
+
+  <section id="registroPage">
+
+    <div class="stars"></div>
+
+    <button type="button" class="tema-btn tema-registro" id="temaRegistro" title="Cambiar de tema">
+    <svg class="ico-sol" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4.2" />
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M18.8 5.2l-1.4 1.4M6.6 17.4l-1.4 1.4" />
+    </svg>
+
+    <svg class="ico-luna" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+    </svg>
+    </button>
+
+    <div class="decor pendulum" data-depth="14" aria-hidden="true">
+      <div class="cradle">
+        <div class="support"></div>
+
+        <div class="string-ball a1">
+          <div class="string"></div>
+          <div class="ball"></div>
+        </div>
+
+        <div class="string-ball a2 swing-left">
+          <div class="string"></div>
+          <div class="ball"></div>
+        </div>
+
+        <div class="string-ball a3">
+          <div class="string"></div>
+          <div class="ball"></div>
+        </div>
+
+        <div class="string-ball a4">
+          <div class="string"></div>
+          <div class="ball"></div>
+        </div>
+
+        <div class="string-ball a5 swing-right">
+          <div class="string"></div>
+          <div class="ball"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="decor wave" data-depth="10" aria-hidden="true">
+      <svg viewBox="0 0 230 160" width="230" height="160">
+
+        <line x1="10" y1="140" x2="10" y2="10" stroke="#5b6a8c" stroke-width="1.5" />
+
+        <line x1="10" y1="140" x2="220" y2="140" stroke="#5b6a8c" stroke-width="1.5" />
+
+        <path d="M10 90 Q 60 30 110 90 T 210 90" stroke="#5b6a8c" stroke-width="1.5" fill="none" />
+
+        <text x="0" y="20" fill="#8b9ac2" font-size="16" font-style="italic">y</text>
+
+        <text x="205" y="158" fill="#8b9ac2" font-size="16" font-style="italic">x</text>
+
+      </svg>
+    </div>
+
+
+    <div class="decor angle" data-depth="12" aria-hidden="true">
+
+      <svg viewBox="0 0 230 150" width="230" height="150">
+
+        <path d="M10 130 Q110 30 220 130" stroke="#5b6a8c" stroke-width="1.5" stroke-dasharray="4 5" fill="none" />
+
+        <line x1="10" y1="130" x2="220" y2="130" stroke="#5b6a8c" stroke-width="1.5" />
+
+        <path d="M40 130 A 30 30 0 0 1 60 108" stroke="#8b9ac2" stroke-width="1.5" fill="none" />
+
+        <text x="60" y="120" fill="#8b9ac2" font-size="15" font-style="italic">&#952;</text>
+
+        <line x1="10" y1="130" x2="35" y2="60" stroke="#5b6a8c" stroke-width="1.5" />
+
+        <text x="8" y="50" fill="#8b9ac2" font-size="15" font-style="italic">v0</text>
+
+      </svg>
+
+    </div>
+
+
+    <div class="decor galaxy" data-depth="20" aria-hidden="true">
+
+      <svg viewBox="0 0 260 200" width="260" height="200">
+
+        <ellipse cx="150" cy="90" rx="80" ry="70" fill="none" stroke="#5b6a8c" stroke-width="1" />
+
+        <g class="galaxy-spin" style="transform-origin:150px 90px;">
+
+          <path d="M150 30 Q 200 60 150 90 Q 100 120 150 150" stroke="#8b9ac2" stroke-width="1.2" fill="none" />
+
+          <path d="M150 40 Q 185 65 150 90 Q 115 115 150 140" stroke="#5b6a8c" stroke-width="1" fill="none" />
+
+        </g>
+
+        <circle cx="150" cy="90" r="6" fill="#dce6ff" />
+
+      </svg>
+
+    </div>
+
+
+    <div class="decor planet" data-depth="18" aria-hidden="true">
+
+      <svg viewBox="0 0 300 220" width="300" height="220">
+
+        <circle cx="150" cy="110" r="70" fill="#111a2e" stroke="#3b4a6b" stroke-width="1" />
+
+        <ellipse cx="150" cy="110" rx="130" ry="26" fill="none" stroke="#5b6a8c" stroke-width="1.4"
+          transform="rotate(-12 150 110)" />
+
+        <ellipse cx="150" cy="110" rx="115" ry="20" fill="none" stroke="#3b4a6b" stroke-width="1"
+          transform="rotate(-12 150 110)" />
+
+      </svg>
+
+    </div>
+
+
+    <div class="decor formula f-ma float-1" data-depth="7">F = ma</div>
+
+    <div class="decor formula e-mc2 float-2" data-depth="6">E = mc&sup2;</div>
+
+    <div class="decor formula p-mv float-1" data-depth="8">p = mv</div>
+
+    <div class="decor formula sum-f float-2" data-depth="7">&Sigma;F = ma</div>
+
+    <div class="decor formula vf float-1" data-depth="9">
+      v<sub>f</sub> = v<sub>i</sub> + at
+    </div>
+
+    <div class="decor formula ek float-2" data-depth="8">
+      E<sub>k</sub> = &frac12; mv&sup2;
+    </div>
+
+
+    <main>
+
+      <div class="brand">
+
+        <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+
+          <ellipse cx="26" cy="26" rx="22" ry="9" stroke="#3b82f6" stroke-width="2" />
+
+          <ellipse cx="26" cy="26" rx="22" ry="9" stroke="#3b82f6" stroke-width="2" transform="rotate(60 26 26)" />
+
+          <ellipse cx="26" cy="26" rx="22" ry="9" stroke="#3b82f6" stroke-width="2" transform="rotate(120 26 26)" />
+
+          <circle cx="26" cy="26" r="5" fill="#3b82f6" />
+
+        </svg>
+
+        <h1>FÍSICA</h1>
+
+      </div>
+
+
+      <p class="tagline">
+        Descubre &middot; Entiende &middot; Transforma el mundo
+      </p>
+
+
+      <div class="card">
+
+        <div class="card-icon">
+
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+
+            <circle cx="12" cy="8" r="4" />
+
+            <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" />
+
+          </svg>
+
+        </div>
+
+
+        <h2>Registrar estudiante</h2>
+
+        <div class="underline"></div>
+
+
+        <label for="nombre">
+
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+
+            <circle cx="12" cy="8" r="4" />
+
+            <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" />
+
+          </svg>
+
+          Nombre completo
+
+        </label>
+
+
+        <input type="text" id="nombre" placeholder="Escribe tu nombre completo">
+
+
+        <div class="error" id="error-nombre">
+          Escribe tu nombre para continuar.
+        </div>
+
+
+        <label>
+
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+
+            <path d="M2 9l10-5 10 5-10 5-10-5z" />
+
+            <path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5" />
+
+          </svg>
+
+          Grado
+
+        </label>
+
+
+        <div class="grado-group">
+
+          <button type="button" class="grado-btn" data-grado="10">
+            10°
+          </button>
+
+          <button type="button" class="grado-btn" data-grado="11">
+            11°
+          </button>
+
+        </div>
+
+
+        <div class="error error-grado" id="error-grado">
+          Selecciona tu grado.
+        </div>
+
+
+        <button type="button" class="continuar" id="btn-continuar">
+
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+
+            <line x1="5" y1="12" x2="19" y2="12" />
+
+            <polyline points="12 5 19 12 12 19" />
+
+          </svg>
+
+          Continuar
+
+        </button>
+
+      </div>
+
+
+      <p class="quote">
+
+        La física no es solo una materia,
+
+        <strong>
+          es comprender cómo funciona el universo.
+        </strong>
+
+      </p>
+
+    </main>
+
+  </section>
+
+
+  <!-- =========================================================
+     SEGUNDA PANTALLA - DASHBOARD
+     ========================================================= -->
+
+  <section id="dashboardPage">
+
+    <div class="dashboard">
+
+
+      <!-- SIDEBAR -->
+
+      <aside class="sidebar" id="sidebar">
+
+        <div class="side-logo">
+
+          <div class="atom">
+
+            <svg viewBox="0 0 52 52" width="44" height="44">
+
+              <ellipse cx="26" cy="26" rx="22" ry="9" fill="none" stroke="#1683ff" stroke-width="1.5" />
+
+              <ellipse cx="26" cy="26" rx="22" ry="9" fill="none" stroke="#1683ff" stroke-width="1.5"
+                transform="rotate(60 26 26)" />
+
+              <ellipse cx="26" cy="26" rx="22" ry="9" fill="none" stroke="#1683ff" stroke-width="1.5"
+                transform="rotate(120 26 26)" />
+
+              <circle cx="26" cy="26" r="4" fill="#1683ff" />
+
+            </svg>
+
+          </div>
+
+          <h2>FÍSICA</h2>
+
+          <p>
+            DESCUBRE · ENTIENDE · TRANSFORMA
+          </p>
+
+        </div>
+
+
+        <nav class="side-menu">
+
+          <div class="side-item active" data-section="inicio">
+
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+              <path d="M3 11l9-8 9 8" />
+              <path d="M5 10v10h14V10" />
+              <path d="M9 20v-6h6v6" />
+
+            </svg>
+
+            Inicio
+
+          </div>
+
+
+          <div class="side-item" data-section="temas">
+
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+              <path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H20v17H7.5A3.5 3.5 0 0 0 4 22V5.5z" />
+              <path d="M4 5.5V18" />
+
+            </svg>
+
+            Temas
+
+          </div>
+
+
+          <div class="side-item" data-section="simuladores">
+
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+              <path d="M9 3h6" />
+              <path d="M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3" />
+              <path d="M8 15h8" />
+
+            </svg>
+
+            Simuladores
+
+          </div>
+
+
+          <div class="side-item" data-section="puntos">
+
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+              <circle cx="12" cy="8" r="5" />
+              <path d="M9 13l-2 8 5-3 5 3-2-8" />
+
+            </svg>
+
+            Mis Puntos
+
+          </div>
+
+
+          <div class="side-item" data-section="logros">
+
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+              <path d="M6 4h12v5a6 6 0 0 1-12 0V4z" />
+              <path d="M8 20h8" />
+              <path d="M12 15v5" />
+              <path d="M6 6H3v2a4 4 0 0 0 4 4" />
+              <path d="M18 6h3v2a4 4 0 0 1-4 4" />
+
+            </svg>
+
+            Logros
+
+          </div>
+
+
+          <div class="side-item" data-section="ajustes">
+
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+              <circle cx="12" cy="12" r="3" />
+
+              <path
+                d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5v.2h-2.6v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1A1.7 1.7 0 0 0 8 15a1.7 1.7 0 0 0-1.5-1H6v-2.6h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.5V5h2.6v.2a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.5 1h.2V14h-.2a1.7 1.7 0 0 0-1.5 1z" />
+
+            </svg>
+
+            Ajustes
+
+          </div>
+
+
+          <div class="side-item" data-section="acerca">
+
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 11v5" />
+              <path d="M12 7.6v.6" />
+
+            </svg>
+
+            Acerca de
+
+          </div>
+
+        </nav>
+
+
+        <div class="side-quote">
+
+          La física explica lo que sabemos,
+          pero también nos muestra lo que aún
+          podemos descubrir.
+
+          <strong>— Richard Feynman</strong>
+
+        </div>
+
+      </aside>
+
+
+      <!-- CONTENIDO PRINCIPAL -->
+
+      <main class="dashboard-main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+          <div class="student-info">
+
+            <div class="welcome">
+              ¡Bienvenido de nuevo!
+            </div>
+
+            <div class="student-name" id="studentName">
+              Estudiante
+            </div>
+
+            <div class="student-grade" id="studentGrade">
+              Estudiante de 10° grado
+            </div>
+
+          </div>
+
+
+          <div class="points-box">
+
+            <div class="star-circle">
+              ★
+            </div>
+
+            <div>
+
+              <div class="points-label">
+                PUNTOS TOTALES
+              </div>
+
+              <div class="points-number" id="puntosTotales">
+                0
+              </div>
+
+              <div class="points-text" id="puntosTexto">
+                Aprendiz
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <button type="button" class="tema-btn tema-panel" id="temaPanel" title="Cambiar de tema">
+            <svg class="ico-sol" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4.2" />
+              <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M18.8 5.2l-1.4 1.4M6.6 17.4l-1.4 1.4" />
+            </svg>
+
+            <svg class="ico-luna" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+            </svg>
+          </button>
+
+
+          <button type="button" class="profile-circle" id="btnPerfil" title="Mi perfil"
+            aria-label="Abrir mi perfil">
+
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+
+              <circle cx="12" cy="7" r="4" />
+              <path d="M4 21c0-4.5 3.5-7 8-7s8 2.5 8 7" />
+
+            </svg>
+
+          </button>
+
+        </header>
+
+
+        <!-- GRID -->
+
+        <div class="content-grid vista vista-activa" id="vistaInicio">
+
+
+          <!-- COLUMNA IZQUIERDA -->
+
+          <div class="left-content">
+
+
+            <!-- HERO -->
+
+            <section class="hero">
+
+              <div class="formula-hero formula-one">
+                F = ma
+              </div>
+
+              <div class="formula-hero formula-two">
+                E = mc²
+              </div>
+
+              <h1>
+                Explora el universo con la física
+              </h1>
+
+              <p>
+                Aprende, experimenta y comprende las leyes que
+                rigen nuestro mundo a través de contenidos
+                interactivos y simulaciones.
+              </p>
+
+              <button class="hero-button" data-ir="temas">
+
+                📖 &nbsp; Explorar temas
+
+              </button>
+
+            </section>
+
+
+            <!-- TEMAS PRINCIPALES -->
+
+            <div class="section-title">
+
+              <span>
+                Temas principales
+              </span>
+
+              <span class="view-all" data-ir="temas" role="button" tabindex="0">
+                Ver todos
+              </span>
+
+            </div>
+
+
+            <div class="topic-grid" id="gridTemasInicio"></div>
+
+
+            <!-- SIMULADORES -->
+
+            <div class="section-title">
+
+              <span>
+                Simuladores destacados
+              </span>
+
+              <span class="view-all" data-ir="simuladores" role="button" tabindex="0">
+                Ver todos
+              </span>
+
+            </div>
+
+
+            <div class="sim-grid" id="gridSimsInicio"></div>
+
+
+          </div>
+
+
+          <!-- COLUMNA DERECHA -->
+
+          <aside class="right-content">
+
+
+            <!-- PROGRESO -->
+
+            <div class="side-card side-card-link" data-ir="temas" role="button" tabindex="0"
+              title="Ver los temas">
+
+              <h3>
+                Tu progreso
+              </h3>
+
+              <div class="circle-progress" id="anilloProgreso">
+
+                <strong id="anilloTexto">0%</strong>
+
+                <small>Completado</small>
+
+              </div>
+
+              <div class="progress-info" id="progresoInfo">
+                Has completado 0 de 4 temas
+              </div>
+
+              <div class="side-big-progress">
+                <span id="progresoBarra" style="width:0%"></span>
+              </div>
+
+            </div>
+
+
+            <!-- RETO DEL DÍA -->
+
+            <div class="side-card">
+
+              <h3>
+                Reto del día
+              </h3>
+
+              <div id="retoCuerpo"></div>
+
+            </div>
+
+
+            <!-- LOGROS -->
+
+            <div class="side-card">
+
+              <h3>
+                Logros recientes
+              </h3>
+
+
+              <div class="achievements" id="logrosInicio"></div>
+
+
+                            <button class="more-button" data-ir="logros">
+                ☆ &nbsp; Ver todos los logros
+              </button>
+
+            </div>
+
+
+          </aside>
+
+
+        </div>
+
+
+        <!-- VISTAS DEL MENÚ LATERAL (las pinta feria-app.js) -->
+
+        <div class="vista" id="vistaTemas"></div>
+
+        <div class="vista" id="vistaLectura"></div>
+
+        <div class="vista" id="vistaSimuladores"></div>
+
+        <div class="vista" id="vistaSimulador"></div>
+
+        <div class="vista" id="vistaPuntos"></div>
+
+        <div class="vista" id="vistaLogros"></div>
+
+        <div class="vista" id="vistaPerfil"></div>
+
+        <div class="vista" id="vistaAjustes"></div>
+
+
+      </main>
+
+    </div>
+
+  </section>
+
+  <!-- =========================================================
+     TERCERA PANTALLA - ACERCA DE
+     ========================================================= -->
+
+  <section id="acercaPage">
+
+    <div class="stars"></div>
+
+    <button type="button" class="tema-btn tema-registro" id="temaAcerca" title="Cambiar de tema">
+
+      <svg class="ico-sol" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.2" />
+        <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M18.8 5.2l-1.4 1.4M6.6 17.4l-1.4 1.4" />
+      </svg>
+
+      <svg class="ico-luna" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+      </svg>
+
+    </button>
+
+
+    <main class="acerca-wrap">
+
+
+      <div class="brand">
+
+        <svg width="46" height="46" viewBox="0 0 52 52" fill="none">
+
+          <ellipse cx="26" cy="26" rx="22" ry="9" stroke="#3b82f6" stroke-width="2" />
+
+          <ellipse cx="26" cy="26" rx="22" ry="9" stroke="#3b82f6" stroke-width="2" transform="rotate(60 26 26)" />
+
+          <ellipse cx="26" cy="26" rx="22" ry="9" stroke="#3b82f6" stroke-width="2" transform="rotate(120 26 26)" />
+
+          <circle cx="26" cy="26" r="5" fill="#3b82f6" />
+
+        </svg>
+
+        <h1>FÍSICA</h1>
+
+        <span class="acerca-version">v1.0</span>
+
+      </div>
+
+
+      <p class="tagline">
+        Descubre &middot; Entiende &middot; Transforma el mundo
+      </p>
+
+
+      <!-- ---------- Que es ---------- -->
+
+      <div class="acerca-card">
+
+        <h2>Acerca de la aplicación</h2>
+
+        <div class="underline"></div>
+
+        <p class="acerca-texto">
+          <strong>Física · Plataforma educativa</strong> es una aplicación web para
+          estudiar física en décimo y undécimo grado. Reúne los temas del año,
+          un panel donde cada estudiante ve su progreso y sus logros, y un espacio
+          de simuladores para experimentar con las leyes que rigen el movimiento,
+          la luz, el sonido y la electricidad.
+        </p>
+
+        <p class="acerca-texto">
+          Nació como proyecto para la Feria de Ciencia y Tecnología y hoy vive en el
+          repositorio de Apps-Web de la intranet del colegio. Funciona sin conexión
+          a internet, así que se puede usar en cualquier computador de la institución.
+        </p>
+
+
+        <!-- Datos del proyecto: edita aqui si cambia algo -->
+
+        <dl class="acerca-datos">
+
+          <dt>Proyecto</dt>
+          <dd>Feria de Ciencia y Tecnología</dd>
+
+          <dt>Autores</dt>
+          <dd>Cristian y Jhohana</dd>
+
+          <dt>Área</dt>
+          <dd>Física &middot; Grados 10° y 11°</dd>
+
+          <dt>Versión</dt>
+          <dd>1.0 &middot; 2026</dd>
+
+          <dt>Hecha con</dt>
+          <dd>HTML, CSS y JavaScript, sin librerías externas</dd>
+
+          <dt>Sin internet</dt>
+          <dd>Sí, funciona completa fuera de línea</dd>
+
+        </dl>
+
+      </div>
+
+
+      <!-- ---------- Que incluye ---------- -->
+
+      <div class="acerca-card">
+
+        <h2>Qué incluye</h2>
+
+        <div class="underline"></div>
+
+        <ul class="acerca-lista">
+
+          <li>Registro del estudiante por nombre y grado.</li>
+
+          <li>Cuatro temas del área: Mecánica Clásica, Ondas y Vibraciones,
+            Óptica, y Electricidad y Magnetismo.</li>
+
+          <li>Panel con el progreso de cada tema, los puntos acumulados,
+            la tabla de posiciones y los logros.</li>
+
+          <li>Modo claro y modo oscuro, con la preferencia guardada en el equipo.</li>
+
+          <li>Diseño adaptable a computador, tablet y celular.</li>
+
+        </ul>
+
+
+        <h3 class="acerca-sub">En la próxima versión</h3>
+
+        <ul class="acerca-lista acerca-lista-proxima">
+
+          <li>Banco de preguntas por tema, con explicación de cada respuesta.</li>
+
+          <li>Tabla de posiciones con los puntajes reales del salón.</li>
+
+        </ul>
+
+      </div>
+
+
+      <!-- ---------- Compartir ---------- -->
+
+      <div class="acerca-card">
+
+        <h2>Compartir la aplicación</h2>
+
+        <div class="underline"></div>
+
+        <p class="acerca-texto">
+          Copia el enlace y envíalo a tus compañeros, o compártelo directamente
+          desde aquí.
+        </p>
+
+        <div class="acerca-enlace">
+
+          <input type="text" id="acercaUrl" readonly aria-label="Enlace de la aplicación">
+
+          <button type="button" class="acerca-copiar" id="btnCopiar">
+
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="12" height="12" rx="2" />
+              <path d="M5 15V5a2 2 0 0 1 2-2h10" />
+            </svg>
+
+            Copiar
+
+          </button>
+
+        </div>
+
+        <p class="acerca-nota" id="acercaNota"></p>
+
+        <div class="acerca-botones">
+
+          <button type="button" class="share-btn" id="btnWhatsapp">
+
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.2A8.5 8.5 0 1 1 21 11.5z" />
+            </svg>
+
+            WhatsApp
+
+          </button>
+
+          <button type="button" class="share-btn" id="btnCorreo">
+
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="M3.5 6.5 12 13l8.5-6.5" />
+            </svg>
+
+            Correo
+
+          </button>
+
+          <button type="button" class="share-btn" id="btnSistema" hidden>
+
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="5.5" r="2.5" />
+              <circle cx="6" cy="12" r="2.5" />
+              <circle cx="18" cy="18.5" r="2.5" />
+              <path d="M8.2 10.8 15.8 6.7M8.2 13.2l7.6 4.1" />
+            </svg>
+
+            Compartir
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <button type="button" class="acerca-volver" id="acercaVolver">
+
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M19 12H5" />
+          <path d="m11 6-6 6 6 6" />
+        </svg>
+
+        Volver al panel
+
+      </button>
+
+
+      <p class="quote">
+
+        Hecha por estudiantes, para estudiantes.
+
+        <strong>
+          Feria de Ciencia y Tecnología
+        </strong>
+
+      </p>
+
+
+    </main>
+
+  </section>
+
+
+  <script src="feria-script.js?v=8"></script>
+  <script src="feria-app.js?v=24"></script>
+
+
+</body>
+
+</html>
