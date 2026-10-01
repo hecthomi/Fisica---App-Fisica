@@ -1815,13 +1815,8 @@
             }).join('') +
             '</div>' +
 
-            '<div class="perfil-acciones">' +
-            '  <button class="accion-btn" id="btnEditarPerfil">Cambiar nombre o grado</button>' +
-            '  <button class="accion-btn accion-suave" id="btnOtroEstudiante">Es otro estudiante</button>' +
-            '</div>';
+            '';
 
-        document.getElementById('btnEditarPerfil').addEventListener('click', editarPerfil);
-        document.getElementById('btnOtroEstudiante').addEventListener('click', otroEstudiante);
     }
 
 
@@ -1963,7 +1958,7 @@
         const n = document.getElementById('studentName');
         const g = document.getElementById('studentGrade');
         if (n) n.textContent = datos.nombre || 'Estudiante';
-        if (g) g.textContent = 'Estudiante de ' + (datos.grado || '10') + '° grado';
+        if (g) g.textContent = datos.grado ? 'Estudiante de ' + datos.grado + '° grado' : 'Física · 10° y 11°';
         animarPuntos();
     }
 
@@ -2076,7 +2071,7 @@
     reanudarSesion();
 
     function reanudarSesion() {
-        if (!haySesion() || !datos.nombre || !datos.grado) return;
+        if (!datos.nombre) { datos.nombre = 'ESTUDIANTE'; if (!datos.desde) datos.desde = hoy(); guardarDatos(); }
 
         const registro = document.getElementById('registroPage');
         const tablero = document.getElementById('dashboardPage');

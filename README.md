@@ -1,1 +1,0 @@
-# Fisica---App-Fisica
